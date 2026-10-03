@@ -220,7 +220,7 @@ function render(){said=[];let h=(S.pd?"":permCard())+(busy?`<div class="card"><i
   const mx=Math.max(...W.days.map(x=>x.max)),mn=Math.min(...W.days.map(x=>x.min)),nr=W.days.filter(x=>x.p>50).length,rd=t("repD")(mx,mn,nr);
   h+=card("rp",t("rep"),"",rd,`<h4>${t("hrs")}</h4><div class="hr">${W.hr.map(x=>`<div>${tm(x.time,{hour:"numeric"})}<b>${x.c}°</b>💧${x.p}%</div>`).join("")}</div><div class="st g2"><div><b>${Math.round(W.fl)}°C</b>${t("fl")}</div><div><b>${W.uv}</b>${t("uv")}</div><div><b>${tm(W.sr)}</b>${t("sr")}</div><div><b>${tm(W.ss)}</b>${t("ss")}</div></div><h4>${t("wk")}</h4>${W.days.map(x=>`<div class="row"><span>${wd(x.d)}</span><span>💧${x.p}%</span><b>${x.max}° / ${x.min}°</b></div>`).join("")}`,rd);
  }else h+=wErr?`<div class="card"><p class="desc">${t("err")}</p></div>`:`<div class="card"><div class="sk"></div></div>`;
- if(M){const rw=M.sample?[[t("sm")[0],2150],[t("sm")[1],2230]]:M.rows,q=rw.slice(0,4);h+=card("mk",t("mk"),cn(),M.sample?esc(M.err||t("sample")):"",q.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>₹${esc(r[1])}</b></div>`).join("")+`<div class="row"><span></span><small>${t("perq")}</small></div>`,t("mkD")(cn(),q[0][1]))}
+ if(M){const rw=M.sample?demoRows():M.rows,q=rw.slice(0,4);h+=card("mk",t("mk"),cn(),M.sample?esc(S.dk?t("demoMk"):t("sample")):"",q.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>₹${esc(r[1])}</b></div>`).join("")+`<div class="row"><span></span><small>${t("perq")}</small></div>`,t("mkD")(cn(),q[0][1]))}
  h+=`<div class="up" id="up"></div>`;$("#feed").innerHTML=h;tick()}
 function tick(){const e=$("#up");if(e&&stamp){const m=Math.floor((Date.now()-stamp)/60000);e.textContent=t("upd")+": "+(m<1?t("now"):m+" "+t("ago"))+" ●"}
  const n=new Date(),H=n.getHours();$("#gr").textContent=t("g")[H<12?0:H<17?1:2];$("#dt").textContent=n.toLocaleDateString(VL[S.lang],{weekday:"long",day:"numeric",month:"long"})+" · "+n.toLocaleTimeString(VL[S.lang],{hour:"2-digit",minute:"2-digit"})}
@@ -239,7 +239,7 @@ async function live(){try{const j=await(await fetch(`https://api.open-meteo.com/
  W={t:c.temperature_2m,h:c.relative_humidity_2m,w:c.wind_speed_10m,fl:c.apparent_temperature,sk,p:D.precipitation_probability_max[0],uv:D.uv_index_max[0],sr:D.sunrise[0],ss:D.sunset[0],days:D.time.map((d,i)=>({d,max:Math.round(D.temperature_2m_max[i]),min:Math.round(D.temperature_2m_min[i]),p:D.precipitation_probability_max[i]})),hr:Array.from({length:12},(_,k)=>({time:H.time[i0+k],c:Math.round(H.temperature_2m[i0+k]),p:H.precipitation_probability[i0+k]}))};stamp=Date.now();wErr=false}catch(e){wErr=!W}
  let rows=[],sample=true;
  let err="";if(!S.dk)err="No data.gov.in key saved";else try{const j=await getMandi();if(j.records?.length){rows=j.records.map(r=>[r.market+", "+r.state,r.modal_price]);sample=false}else err="No live mandi records found for "+capi()+". "+(j.message||"Try another crop or check the API key.")}catch(e){err="Price API failed: "+e.message}
- M={rows,sample,err};render()}
+ if(err)console.warn("Mandi live prices unavailable:",err);M={rows,sample,err};render()}
 // field
 const f=$("#field");for(let i=0;i<60;i++){const d=document.createElement("div");d.className="s";d.style.cssText=`left:${i*1.7+Math.random()}%;height:${26+Math.random()*34}px;animation-delay:${-Math.random()*3}s;animation-duration:${2.4+Math.random()*2}s`;f.appendChild(d)}
 // Gemini
@@ -285,6 +285,15 @@ for(let i=0;i<30;i++){const x=Math.min(758,i*26+Math.random()*18),k=.8+Math.rand
 Object.assign(T.en,{gal:"Scan gallery",prev:"Earlier scans",noscans:"No scans yet. Tap the camera to check a crop.",del:"Delete this scan",delT:"Delete this scan?",delB:"This photo and its advice will be removed.",cwT:"Erase all your data?",cwB:"This will delete your saved keys, settings and ALL scan photos. This cannot be undone.",cwY:"Yes, erase everything",cwN:"No, keep my data",cleared:"All data erased"});
 Object.assign(T.te,{gal:"స్కాన్ గ్యాలరీ",prev:"గత స్కాన్లు",noscans:"ఇంకా స్కాన్లు లేవు. పంటను పరిశీలించడానికి కెమెరా నొక్కండి.",del:"ఈ స్కాన్ తొలగించు",delT:"ఈ స్కాన్ తొలగించాలా?",delB:"ఈ ఫోటో మరియు దాని సలహా తొలగించబడతాయి.",cwT:"మొత్తం డేటా తొలగించాలా?",cwB:"మీ సేవ్ చేసిన కీలు, సెట్టింగ్స్, అన్ని స్కాన్ ఫోటోలు తొలగించబడతాయి. దీన్ని తిరిగి పొందలేరు.",cwY:"అవును, అన్నీ తొలగించు",cwN:"వద్దు, డేటా ఉంచు",cleared:"మొత్తం డేటా తొలగించబడింది"});
 Object.assign(T.hi,{gal:"स्कैन गैलरी",prev:"पिछले स्कैन",noscans:"अभी कोई स्कैन नहीं। फसल जांचने के लिए कैमरा दबाएं।",del:"यह स्कैन हटाएं",delT:"यह स्कैन हटाएं?",delB:"यह फ़ोटो और उसकी सलाह हट जाएगी।",cwT:"सारा डेटा मिटाएं?",cwB:"आपकी सहेजी कुंजियां, सेटिंग्स और सभी स्कैन फ़ोटो मिट जाएंगी। इसे वापस नहीं लाया जा सकेगा।",cwY:"हां, सब मिटाएं",cwN:"नहीं, डेटा रखें",cleared:"सारा डेटा मिटा दिया गया"});
+
+/* ---- demo mandi prices (used only when live prices are unavailable) ---- */
+const DP={Rice:2300,Wheat:2550,Maize:2250,Cotton:7000,Groundnut:6200,Sugarcane:350,Tomato:2000,Onion:1800,Potato:1700,Chilli:14000,Turmeric:11500,"Bengal Gram":5800,"Red Gram":7500,"Black Gram":7200,"Green Gram":7800,Soyabean:4800,Mustard:5800,Banana:2500,Mango:4500,Jowar:3200,Bajra:2500,Brinjal:2200,Okra:3000,Coconut:2800,Sunflower:6500,Sesame:9500};
+const DM={en:["Visakhapatnam","Vijayawada","Guntur","Kurnool"],te:["విశాఖపట్నం","విజయవాడ","గుంటూరు","కర్నూలు"],hi:["विशाखापत्तनम","विजयवाड़ा","गुंटूर","कुरनूल"]};
+function demoRows(){let b=DP[S.crop];if(!b){let h=0;for(const ch of String(S.crop))h=(h*31+ch.charCodeAt(0))%1000;b=2000+h*5}
+ return[0,.03,-.04,.06].map((o,i)=>[DM[S.lang][i],Math.round(b*(1+o)/10)*10])}
+Object.assign(T.en,{demoMk:"Demo prices for the presentation. Live mandi service is not reachable right now."});
+Object.assign(T.te,{demoMk:"ఇవి ప్రదర్శన కోసం డెమో ధరలు. లైవ్ మండి సేవ ప్రస్తుతం అందుబాటులో లేదు."});
+Object.assign(T.hi,{demoMk:"ये प्रस्तुति के लिए डेमो भाव हैं। लाइव मंडी सेवा अभी उपलब्ध नहीं है।"});
 
 /* ---- speech: chunked so long Telugu/Hindi text is read fully ---- */
 let vo=[],spTok=0;
