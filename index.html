@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
 <title>Vithana</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E">
 <style>
 :root{--d:#0b3d2e;--g:#1b7a4b;--l:#e6f2e8;--gold:#f2b632;--bg:#f3f6f1;--tx:#14261c;--mu:#5d7065}
 *{box-sizing:border-box}html{font-size:17px}
@@ -115,7 +116,7 @@ main{grid-template-columns:minmax(0,1fr);width:100%}
 .hi{text-align:center}
 
 /* v7: language dropdown */
-select.lgs{display:block;appearance:none;-webkit-appearance:none;height:44px;width:min(100%,260px);max-width:100%;margin:0 auto;padding:0 40px 0 18px;border:1px solid #ffffff3d;border-radius:14px;color:#fff;font:700 .95rem/1 inherit;font-family:inherit;text-align:center;text-align-last:center;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background:#06241d99 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center/16px}
+select.lgs{display:block;appearance:none;-webkit-appearance:none;height:44px;width:min(100%,260px);max-width:100%;margin:0 auto;padding:0 40px 0 18px;border:1px solid #ffffff3d;border-radius:14px;color:#fff;font-weight:700;font-size:.95rem;line-height:1;font-family:inherit;text-align:center;text-align-last:center;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background:#06241d99 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center/16px}
 select.lgs:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 select.lgs option{color:#14261c;background:#fff}
 #pc .st b{font-size:1.3rem}#pc .btn{margin-top:10px}#pc .btn.a{background:transparent;color:#eaf5ea;border-color:#ffffff40}
@@ -157,6 +158,7 @@ select.lgs option{color:#14261c;background:#fff}
 <div id="ov"></div><aside id="dr"></aside><div id="toast"></div>
 <script>
 const $=s=>document.querySelector(s);
+const esc=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const P={cam:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/>',set:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',spk:'<path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/>',wx:'<path d="M7 18a4 4 0 010-8 5 5 0 019.5 1A3.5 3.5 0 0116 18z"/>',adv:'<path d="M12 3a6 6 0 00-3 11v3h6v-3a6 6 0 00-3-11zM10 20h4"/>',mk:'<path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/>',lf:'<path d="M5 19c0-9 5-14 14-14 0 9-5 14-14 14zM5 19l7-7"/>',ch:'<path d="M4 5h16v11H9l-5 4z"/>',rp:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',img:'<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M5 18l5-5 4 4 2-2 3 3"/>'};
 const I=n=>`<svg class="i" viewBox="0 0 24 24">${P[n]}</svg>`;
 P.home='<path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/>';P.lock='<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>';$("#bH").innerHTML=I("home");$("#bH").onclick=()=>{window.speechSynthesis&&speechSynthesis.cancel();document.querySelectorAll(".sp.on").forEach(b=>b.classList.remove("on"));window.scrollTo({top:0,behavior:"smooth"})};$("#bC").innerHTML=I("cam");$("#bM").innerHTML=I("mic");$("#bS").innerHTML=I("set");$("#file").parentNode.insertAdjacentHTML("afterbegin",I("img"));$("#cX").style.fontSize="1.2rem";
@@ -190,7 +192,7 @@ const resolveCrop=v=>{v=(v||"").trim();const q=v.toLowerCase();const c=CR.find(x
 let S=D;try{S={...D,...JSON.parse(localStorage.getItem("km2")||"{}")}}catch(e){}
 const sv=()=>{try{localStorage.setItem("km2",JSON.stringify(S))}catch(e){}};
 const t=k=>T[S.lang][k];
-let W=null,M=null,user=[],said=[],stamp=0,cur=null;
+let W=null,wErr=false,M=null,user=[],said=[],stamp=0,cur=null;
 const toast=m=>{const e=$("#toast");e.textContent=m;e.style.display="block";setTimeout(()=>e.style.display="none",3500)};
 
 function card(ic,title,sub,desc,body,say){said.push(say);return`<div class="card ${ic=="wx"?"feat":""}"><div class="ch"><div class="chip">${I(ic)}</div><h2>${title}${sub?`<small>${sub}</small>`:""}</h2><button class="sp" data-i="${said.length-1}" aria-label="Listen">${I("spk")}</button></div>${desc?`<p class="desc">${desc}</p>`:""}${body||""}</div>`}
@@ -217,16 +219,16 @@ function render(){said=[];let h=(S.pd?"":permCard())+(busy?`<div class="card"><i
   h+=card("adv",t("adv"),"","",A.map(a=>`<div class="al ${ok?"ok":""}">${a}</div>`).join(""),A.join(" "));
   const mx=Math.max(...W.days.map(x=>x.max)),mn=Math.min(...W.days.map(x=>x.min)),nr=W.days.filter(x=>x.p>50).length,rd=t("repD")(mx,mn,nr);
   h+=card("rp",t("rep"),"",rd,`<h4>${t("hrs")}</h4><div class="hr">${W.hr.map(x=>`<div>${tm(x.time,{hour:"numeric"})}<b>${x.c}°</b>💧${x.p}%</div>`).join("")}</div><div class="st g2"><div><b>${Math.round(W.fl)}°C</b>${t("fl")}</div><div><b>${W.uv}</b>${t("uv")}</div><div><b>${tm(W.sr)}</b>${t("sr")}</div><div><b>${tm(W.ss)}</b>${t("ss")}</div></div><h4>${t("wk")}</h4>${W.days.map(x=>`<div class="row"><span>${wd(x.d)}</span><span>💧${x.p}%</span><b>${x.max}° / ${x.min}°</b></div>`).join("")}`,rd);
- }else h+=`<div class="card"><div class="sk"></div></div>`;
- if(M){const rw=M.sample?[[t("sm")[0],2150],[t("sm")[1],2230]]:M.rows,q=rw.slice(0,4);h+=card("mk",t("mk"),cn(),M.sample?(M.err||t("sample")):"",q.map(r=>`<div class="row"><span>${r[0]}</span><b>₹${r[1]}</b></div>`).join("")+`<div class="row"><span></span><small>${t("perq")}</small></div>`,t("mkD")(cn(),q[0][1]))}
+ }else h+=wErr?`<div class="card"><p class="desc">${t("err")}</p></div>`:`<div class="card"><div class="sk"></div></div>`;
+ if(M){const rw=M.sample?[[t("sm")[0],2150],[t("sm")[1],2230]]:M.rows,q=rw.slice(0,4);h+=card("mk",t("mk"),cn(),M.sample?esc(M.err||t("sample")):"",q.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>₹${esc(r[1])}</b></div>`).join("")+`<div class="row"><span></span><small>${t("perq")}</small></div>`,t("mkD")(cn(),q[0][1]))}
  h+=`<div class="up" id="up"></div>`;$("#feed").innerHTML=h;tick()}
-function tick(){const e=$("#up");if(!e||!stamp)return;const m=Math.floor((Date.now()-stamp)/60000);e.textContent=t("upd")+": "+(m<1?t("now"):m+" "+t("ago"))+" ●";
+function tick(){const e=$("#up");if(e&&stamp){const m=Math.floor((Date.now()-stamp)/60000);e.textContent=t("upd")+": "+(m<1?t("now"):m+" "+t("ago"))+" ●"}
  const n=new Date(),H=n.getHours();$("#gr").textContent=t("g")[H<12?0:H<17?1:2];$("#dt").textContent=n.toLocaleDateString(VL[S.lang],{weekday:"long",day:"numeric",month:"long"})+" · "+n.toLocaleTimeString(VL[S.lang],{hour:"2-digit",minute:"2-digit"})}
 async function live(){try{const j=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${S.lat}&longitude=${S.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code&hourly=temperature_2m,precipitation_probability&daily=precipitation_probability_max,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&forecast_days=7&timezone=auto`)).json();
  const c=j.current,w=c.weather_code,sk=w<2?0:w<4?1:w<50?2:w<90?3:4,D=j.daily,H=j.hourly;let i0=H.time.findIndex(x=>x>=c.time.slice(0,13));if(i0<0)i0=0;
- W={t:c.temperature_2m,h:c.relative_humidity_2m,w:c.wind_speed_10m,fl:c.apparent_temperature,sk,p:D.precipitation_probability_max[0],uv:D.uv_index_max[0],sr:D.sunrise[0],ss:D.sunset[0],days:D.time.map((d,i)=>({d,max:Math.round(D.temperature_2m_max[i]),min:Math.round(D.temperature_2m_min[i]),p:D.precipitation_probability_max[i]})),hr:Array.from({length:12},(_,k)=>({time:H.time[i0+k],c:Math.round(H.temperature_2m[i0+k]),p:H.precipitation_probability[i0+k]}))};stamp=Date.now()}catch(e){}
+ W={t:c.temperature_2m,h:c.relative_humidity_2m,w:c.wind_speed_10m,fl:c.apparent_temperature,sk,p:D.precipitation_probability_max[0],uv:D.uv_index_max[0],sr:D.sunrise[0],ss:D.sunset[0],days:D.time.map((d,i)=>({d,max:Math.round(D.temperature_2m_max[i]),min:Math.round(D.temperature_2m_min[i]),p:D.precipitation_probability_max[i]})),hr:Array.from({length:12},(_,k)=>({time:H.time[i0+k],c:Math.round(H.temperature_2m[i0+k]),p:H.precipitation_probability[i0+k]}))};stamp=Date.now();wErr=false}catch(e){wErr=!W}
  let rows=[],sample=true;
- let err="";if(!S.dk)err="No data.gov.in key saved";else try{const r=await fetch("/api/mandi",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({apiKey:S.dk,commodity:capi()})});const j=await r.json();if(!r.ok)throw new Error(j.error||("HTTP "+r.status));if(j.records?.length){rows=j.records.map(r=>[r.market+", "+r.state,r.modal_price]);sample=false}else err="No live mandi records found for "+capi()+". "+(j.message||"Try another crop or check the API key.")}catch(e){err="Price API failed: "+e.message}
+ let err="";if(!S.dk)err="No data.gov.in key saved";else try{const r=await fetch("/api/mandi",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({apiKey:S.dk,commodity:capi()})});const raw=await r.text();let j;try{j=JSON.parse(raw)}catch(_){throw new Error(r.status==404?"Price service not found (HTTP 404). Make sure api/mandi.js is deployed.":"Price service sent an unexpected reply (HTTP "+r.status+").")}if(!r.ok)throw new Error(j.error||("HTTP "+r.status));if(j.records?.length){rows=j.records.map(r=>[r.market+", "+r.state,r.modal_price]);sample=false}else err="No live mandi records found for "+capi()+". "+(j.message||"Try another crop or check the API key.")}catch(e){err="Price API failed: "+e.message}
  M={rows,sample,err};render()}
 // field
 const f=$("#field");for(let i=0;i<60;i++){const d=document.createElement("div");d.className="s";d.style.cssText=`left:${i*1.7+Math.random()}%;height:${26+Math.random()*34}px;animation-delay:${-Math.random()*3}s;animation-duration:${2.4+Math.random()*2}s`;f.appendChild(d)}
@@ -249,22 +251,22 @@ $("#bM").onclick=()=>{const R=window.SpeechRecognition||window.webkitSpeechRecog
  r.onend=()=>{if(rec===r)micOff();if(!got)return};
  r.onresult=async e=>{got=true;const q=e.results[0][0].transcript;if(!S.gk)return toast(t("nokey"));
   try{const a=await gem([{text:`You are a friendly farming assistant for a small farmer in India growing ${S.crop}. Answer in ${FL[S.lang]}, very simple words, max 5 short sentences. Question: ${q}`}]);
-   said=[];user.unshift(`<div class="card"><div class="ch"><div class="chip">${I("ch")}</div><h2>${t("ask")}<small>${q}</small></h2><button class="sp" data-i="u1">${I("spk")}</button></div><p class="desc">${a.replace(/\n/g,"<br>")}</p></div>`);window.__a=a;render();if(S.auto)speak(a);window.scrollTo({top:0,behavior:"smooth"})}catch(x){toast(t("err"))}};
+   const qk="q"+Date.now();SAY[qk]=a;SAYL[qk]=S.lang;user.unshift(`<div class="card"><div class="ch"><div class="chip">${I("ch")}</div><h2>${t("ask")}<small>${esc(q)}</small></h2><button class="sp" data-k="${qk}" aria-label="Listen">${I("spk")}</button></div><p class="desc">${esc(a).replace(/\n/g,"<br>")}</p></div>`);render();if(S.auto)speak(a);window.scrollTo({top:0,behavior:"smooth"})}catch(x){toast(t("err"))}};
  try{r.start()}catch(e){micOff()}};
-document.addEventListener("click",e=>{const b=e.target.closest('.sp[data-i="u1"]');if(b)speak(window.__a||"",b)},true);
 $('#lgs').onchange=e=>{S.lang=e.target.value;sv();apply();window.speechSynthesis&&speechSynthesis.cancel()};
 // settings
+const ll=(v,old,m)=>{const n=parseFloat(String(v).trim());return isFinite(n)&&Math.abs(n)<=m?String(n):old};
 const open=o=>{$("#dr").classList.toggle("o",o);$("#ov").style.display=o?"block":"none"};$("#ov").onclick=()=>open(false);
 $("#bS").onclick=()=>{$("#dr").innerHTML=`<h2>${t("set")}</h2><label>${t("lang")}</label><select id="a1">${Object.keys(LN).map(k=>`<option value="${k}" ${k==S.lang?"selected":""}>${LN[k]}</option>`).join("")}</select>
 <label>${t("gk")}</label><input type="password" id="a2" value="${S.gk}" placeholder="AIza…"><label>${t("model")}</label><input type="text" id="a3" value="${S.model}">
-<label>${t("dk")}</label><input type="password" id="a4" value="${S.dk}"><label>${t("crop")}</label><select id="a5">${CR.map(c=>`<option value="${c.k}" ${c.k==S.crop?"selected":""}>${cl(c)}</option>`).join("")}<option value="__o" ${CR.some(c=>c.k==S.crop)?"":"selected"}>${t("oth")}</option></select><input type="text" id="a5b" value="${CR.some(c=>c.k==S.crop)?"":S.crop}" style="display:${CR.some(c=>c.k==S.crop)?"none":"block"}">
+<label>${t("dk")}</label><input type="password" id="a4" value="${S.dk}"><label>${t("crop")}</label><select id="a5">${CR.map(c=>`<option value="${c.k}" ${c.k==S.crop?"selected":""}>${cl(c)}</option>`).join("")}<option value="__o" ${CR.some(c=>c.k==S.crop)?"":"selected"}>${t("oth")}</option></select><input type="text" id="a5b" value="${CR.some(c=>c.k==S.crop)?"":esc(S.crop)}" style="display:${CR.some(c=>c.k==S.crop)?"none":"block"}">
 <label>${t("lat")} / ${t("lon")}</label><div style="display:flex;gap:8px"><input type="text" id="a6" value="${S.lat}"><input type="text" id="a7" value="${S.lon}"></div>
 <label>${t("size")}</label><input type="range" id="a8" min="15" max="24" value="${S.size}"><label>${t("rate")}</label><input type="range" id="a9" min=".5" max="1.4" step=".1" value="${S.rate}"><br><br>
 <label><input type="checkbox" id="b1" ${S.auto?"checked":""}> ${t("auto")}</label><br><label><input type="checkbox" id="b2" ${S.anim?"checked":""}> ${t("anim")}</label>
 <button class="btn a" id="pm" type="button">${t("pall")}</button><button class="btn" id="ok">${t("sv")}</button><button class="btn a" id="rs" style="color:#c62828;border-color:#c62828">${t("clr")}</button>`;open(true);
  $("#pm").onclick=async()=>{await askAll();const a=$("#a6"),b=$("#a7");if(a)a.value=S.lat;if(b)b.value=S.lon};
  $("#a5").onchange=()=>{$("#a5b").style.display=$("#a5").value=="__o"?"block":"none"};
- $("#ok").onclick=()=>{S={...S,lang:$("#a1").value,gk:$("#a2").value.trim(),model:$("#a3").value.trim(),dk:$("#a4").value.trim(),crop:$("#a5").value=="__o"?(resolveCrop($("#a5b").value)||S.crop):$("#a5").value,lat:$("#a6").value,lon:$("#a7").value,size:+$("#a8").value,rate:+$("#a9").value,auto:$("#b1").checked,anim:$("#b2").checked};sv();apply();open(false);toast(t("saved"));live()};
+ $("#ok").onclick=()=>{S={...S,lang:$("#a1").value,gk:$("#a2").value.trim(),model:$("#a3").value.trim(),dk:$("#a4").value.trim(),crop:$("#a5").value=="__o"?(resolveCrop($("#a5b").value)||S.crop):$("#a5").value,lat:ll($("#a6").value,S.lat,90),lon:ll($("#a7").value,S.lon,180),size:+$("#a8").value,rate:+$("#a9").value,auto:$("#b1").checked,anim:$("#b2").checked};sv();apply();open(false);toast(t("saved"));live()};
  $("#rs").onclick=()=>ask(t("cwT"),t("cwB"),t("cwY"),t("cwN"),()=>{stopSp();try{localStorage.removeItem("km2");localStorage.removeItem("km2s")}catch(e){}scans=[];user=[];S={...D};apply();open(false);live();toast(t("cleared"))})};
 function apply(){$('#lgs').innerHTML=Object.keys(LN).map(k=>`<option value="${k}" ${k==S.lang?"selected":""}>${LN[k]}</option>`).join('');document.documentElement.style.fontSize=S.size+"px";document.documentElement.lang=S.lang;document.body.classList.toggle("noanim",!S.anim);render();if(gal.classList.contains("o"))galRender()}
 (()=>{const g=document.getElementById("trees"),ns="http://www.w3.org/2000/svg",seg=[[0,222,150,188,320,214],[320,214,490,240,620,204],[620,204,750,168,760,216]];
@@ -299,7 +301,7 @@ function scanView(r,key){const L=r.demo?S.lang:r.lang,tt=k=>T[L][k],d=r.demo?{he
  const say=[l,d.problem,tt("fix"),...d.steps,tt("pest"),d.pesticide,tt("org"),d.organic,tt("safe"),d.safety,r.demo?tt("demo"):""].filter(Boolean).map(x=>x.replace(/[.।]+\s*$/,"")).join(". ")+".";
  SAY[key]=say;SAYL[key]=L;
  const when=new Date(r.ts).toLocaleString(VL[S.lang],{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
- return card("lf",tt("scanT"),when,d.problem,`<img class="th" src="${r.img}"><span class="pill" style="background:${c}">${l}</span>${r.demo?`<p><small>${tt("demo")}</small></p>`:""}<h4>${tt("fix")}</h4><ol>${d.steps.map(s=>`<li>${s}</li>`).join("")}</ol><h4>${tt("pest")}</h4><p>${d.pesticide}</p><h4>${tt("org")}</h4><p>${d.organic}</p><h4>${tt("safe")}</h4><p>${d.safety}</p>`,say).replace(/data-i="\d+"/,`data-k="${key}"`)}
+ return card("lf",tt("scanT"),when,esc(d.problem),`<img class="th" src="${r.img}"><span class="pill" style="background:${c}">${l}</span>${r.demo?`<p><small>${tt("demo")}</small></p>`:""}<h4>${tt("fix")}</h4><ol>${d.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol><h4>${tt("pest")}</h4><p>${esc(d.pesticide)}</p><h4>${tt("org")}</h4><p>${esc(d.organic)}</p><h4>${tt("safe")}</h4><p>${esc(d.safety)}</p>`,say).replace(/data-i="\d+"/,`data-k="${key}"`)}
 async function analyze(url){busy=url;render();window.scrollTo({top:0,behavior:"smooth"});
  const r={id:Date.now(),ts:Date.now(),demo:!S.gk,lang:S.lang,img:url};
  try{
@@ -307,7 +309,7 @@ async function analyze(url){busy=url;render();window.scrollTo({top:0,behavior:"s
    try{const tx=await gem([{inline_data:{mime_type:"image/jpeg",data:url.split(",")[1]}},{text:`You are an agriculture expert helping a small farmer in India. Expected crop: ${S.crop}. Look at the photo. Reply ONLY JSON with keys: healthy(boolean), severity("Low"|"Medium"|"High"), problem(short), steps(array of 3 short actions), pesticide(suitable medicine and dose; advise consulting local agri officer), organic(natural option), safety(one line). Write all values in ${FL[S.lang]} using very simple words.`}],true,ctl.signal);
     const m=tx.match(/\{[\s\S]*\}/);r.d=norm(JSON.parse(m?m[0]:tx))}finally{clearTimeout(to)}}
   try{r.img=await shrink(url,720,.7)}catch(e){}
- }catch(e){busy=null;render();push(`<div class="card">${t("err")}<br><small>${e.name=="AbortError"?"Timeout":e.message}</small></div>`);return}
+ }catch(e){busy=null;render();push(`<div class="card">${t("err")}<br><small>${esc(e.name=="AbortError"?"Timeout":e.message)}</small></div>`);return}
  busy=null;scans.unshift(r);saveScans();render();window.scrollTo({top:0,behavior:"smooth"});
  if(S.auto)speak(SAY.u0,document.querySelector('.sp[data-k="u0"]'),SAYL.u0)}
 $("#cSn").onclick=()=>{const v=$("#vid");if(!v.videoWidth)return toast(t("err"));const c=document.createElement("canvas"),k=Math.min(1,1024/v.videoWidth);c.width=Math.round(v.videoWidth*k);c.height=Math.round(v.videoHeight*k);c.getContext("2d").drawImage(v,0,0,c.width,c.height);const u=c.toDataURL("image/jpeg",.8);closeCam();analyze(u)};
