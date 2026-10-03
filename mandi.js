@@ -27,7 +27,11 @@ module.exports = async (req, res) => {
     try {
       data = JSON.parse(text);
     } catch {
-      return res.status(502).json({ error: "The government API returned a non-JSON response." });
+      // Return a short, safe diagnostic rather than throwing a confusing JSON parse error.
+      const preview = text.replace(/\\s+/g, " ").slice(0, 140);
+      return res.status(502).json({
+        error: `Government API returned non-JSON content (HTTP ${upstream.status}, content-type ${upstream.headers.get("content-type") || "unknown"}). Preview: ${preview || "(empty response)"}`,
+      });
     }
 
     if (!upstream.ok) {
@@ -36,8 +40,14 @@ module.exports = async (req, res) => {
       });
     }
 
+    if (!Array.isArray(data.records)) {
+      return res.status(502).json({
+        error: data.message || "Government API returned JSON, but no records array was present."
+      });
+    }
+
     return res.status(200).json({
-      records: Array.isArray(data.records) ? data.records : [],
+      records: data.records,
       message: data.message || null
     });
   } catch (error) {
