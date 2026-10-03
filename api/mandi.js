@@ -78,10 +78,14 @@ module.exports = async (req, res) => {
     return res.status(200).json({ records, message: data.message || null });
   } catch (error) {
     const timedOut = error && (error.name === "TimeoutError" || error.name === "AbortError");
+    // Safe diagnostic (never contains the API key): error code/message from the network layer.
+    const c = (error && error.cause) || error || {};
+    const detail = [c.code, c.message].filter(Boolean).join(": ").replace(/api-key=[^&\s]+/gi, "api-key=***").slice(0, 200);
+    console.error("mandi proxy error:", error && error.name, detail);
     return res.status(502).json({
-      error: timedOut
-        ? "data.gov.in took too long to respond. Please try again."
-        : "Could not reach data.gov.in from the server. Check API availability and try again.",
+      error: (timedOut
+        ? "data.gov.in took too long to respond."
+        : "Could not reach data.gov.in from the server.") + (detail ? ` Details: ${detail}` : ""),
     });
   }
 };
