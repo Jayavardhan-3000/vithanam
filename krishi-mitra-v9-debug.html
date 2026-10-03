@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+<title>Vithana</title>
+<style>
+:root{--d:#0b3d2e;--g:#1b7a4b;--l:#e6f2e8;--gold:#f2b632;--bg:#f3f6f1;--tx:#14261c;--mu:#5d7065}
+*{box-sizing:border-box}html{font-size:17px}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Segoe UI",system-ui,"Noto Sans Telugu","Noto Sans Devanagari",sans-serif;line-height:1.5}
+svg.i{width:1.4rem;height:1.4rem;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.hero{position:relative;overflow:hidden;color:#fff;padding:14px 18px 96px;background:linear-gradient(175deg,#06291f 0%,#0b3d2e 35%,#1b7a4b 75%,#3f9a5f)}
+.bar{display:flex;align-items:center;gap:10px;max-width:760px;margin:auto;position:relative;z-index:3}
+.logo{display:flex;align-items:center;gap:10px;flex:1;font-weight:700;font-size:1.1rem}.logo small{display:block;font-weight:400;font-size:.7rem;opacity:.8}
+.ib{width:44px;height:44px;border-radius:14px;border:0;background:#ffffff26;color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);transition:.2s}
+.ib:hover{background:#ffffff40}.ib.on{background:var(--gold);color:#3b2a00;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px #f2b63233}}
+.lg{height:44px;border-radius:14px;border:0;background:#ffffff26;color:#fff;padding:0 10px;font-weight:600}.lg option{color:#000}
+.hi{max-width:760px;margin:26px auto 0;position:relative;z-index:3}.hi h1{margin:0;font-size:1.7rem}.hi p{margin:2px 0 0;opacity:.9;font-size:.95rem}
+.scene{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}.cl{animation:dr 110s linear infinite}@keyframes dr{from{transform:translateX(-220px)}to{transform:translateX(1000px)}}.sun{animation:gl 6s ease-in-out infinite alternate;transform-origin:center;transform-box:fill-box}@keyframes gl{to{opacity:.55;transform:scale(1.12)}}
+#field{position:absolute;left:0;right:0;bottom:0;height:90px;z-index:2}
+.s{position:absolute;bottom:-3px;width:5px;border-radius:4px 4px 0 0;background:linear-gradient(#e7c04e,#6aa84f 45%,#1e5b34);transform-origin:bottom;animation:sw 3s ease-in-out infinite alternate}
+.s:before{content:"";position:absolute;top:-9px;left:-3px;width:11px;height:20px;border-radius:50%;background:#e7c04e}
+@keyframes sw{from{transform:rotate(-6deg)}to{transform:rotate(7deg)}}
+main{max-width:760px;margin:-48px auto 40px;padding:0 14px;position:relative;z-index:4;display:grid;gap:14px}
+.card{background:#fff;border-radius:22px;padding:18px;box-shadow:0 6px 24px #0b3d2e18;animation:up .5s both}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.ch{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.chip{width:42px;height:42px;border-radius:13px;background:var(--l);color:var(--g);display:grid;place-items:center;flex:none}
+.ch h2{margin:0;font-size:1.05rem;flex:1}.ch small{display:block;color:var(--mu);font-weight:400;font-size:.75rem}
+.sp{width:42px;height:42px;border-radius:50%;border:2px solid var(--l);background:#fff;color:var(--g);display:grid;place-items:center;cursor:pointer;flex:none}
+.sp.on{background:var(--g);color:#fff;animation:pulse 1.2s infinite}
+.desc{margin:6px 0 10px;font-size:1rem}
+.big{display:flex;align-items:baseline;gap:8px}.big b{font-size:3rem;line-height:1}.big span{color:var(--mu)}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.st div{background:var(--bg);border-radius:14px;padding:10px;text-align:center;font-size:.8rem;color:var(--mu)}.st b{display:block;font-size:1.1rem;color:var(--tx)}
+.fc{display:flex;gap:8px}.fc div{flex:1;text-align:center;border:1px solid #e3ebe3;border-radius:14px;padding:8px;font-size:.8rem}
+.al{border-left:5px solid var(--gold);background:#fff8e6;padding:10px 12px;border-radius:12px;margin:6px 0}.al.ok{border-color:var(--g);background:var(--l)}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid #edf2ed}.row b{color:var(--g)}
+.pill{display:inline-block;padding:3px 12px;border-radius:20px;color:#fff;font-weight:700;font-size:.85rem}
+.sk{height:70px;border-radius:14px;background:linear-gradient(90deg,#eef3ee,#fff,#eef3ee);background-size:200%;animation:sh 1.2s infinite}@keyframes sh{to{background-position:-200%}}
+.up{color:var(--mu);font-size:.75rem;text-align:center}
+.th{width:100%;max-height:200px;object-fit:cover;border-radius:14px;margin-bottom:8px}
+h4{margin:10px 0 2px;color:var(--g)}ol{margin:4px 0;padding-left:20px}
+#cam{position:fixed;inset:0;background:#000;z-index:50;display:none;flex-direction:column}
+#cam video{flex:1;min-height:0;object-fit:cover;width:100%}
+.cb{display:flex;justify-content:space-around;align-items:center;padding:18px;background:#000}
+.sh{width:72px;height:72px;border-radius:50%;border:5px solid #fff;background:var(--gold);cursor:pointer}
+#ov{position:fixed;inset:0;background:#0007;z-index:60;display:none}
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(360px,100%);background:#fff;z-index:61;transform:translateX(100%);transition:.3s;overflow:auto;padding:18px}
+#dr.o{transform:none}
+label{font-weight:600;font-size:.85rem}input[type=text],input[type=password],select{width:100%;padding:11px;border:1.5px solid #d5e0d5;border-radius:12px;margin:4px 0 12px;font-size:.95rem;font-family:inherit}
+input[type=range]{width:100%}
+.btn{width:100%;border:0;border-radius:14px;padding:14px;font-weight:700;font-size:1rem;background:var(--g);color:#fff;margin-top:6px}.btn.a{background:#fff;color:var(--g);border:2px solid var(--g)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#14261c;color:#fff;padding:10px 18px;border-radius:14px;z-index:99;display:none;max-width:90%}
+.noanim *{animation:none!important}
+.bar{padding-top:4px}.logo{letter-spacing:.2px}
+body{background:linear-gradient(#f3f6f1,#e9f0e6)}
+.card{border:1px solid #e4ece3;transition:transform .25s,box-shadow .25s}.card:hover{transform:translateY(-2px);box-shadow:0 12px 32px #0b3d2e22}
+.ch h2{font-weight:700;letter-spacing:.1px}
+.feat{background:linear-gradient(145deg,#0b3d2e,#1b7a4b);color:#fff;border:0}.feat .chip{background:#ffffff26;color:#fff}.feat small,.feat .st div{color:#ffffffb8}.feat .st div{background:#ffffff1c}.feat .st b{color:#fff}.feat .sp{background:#ffffff1f;border-color:#ffffff33;color:#fff}.feat .fc div{border-color:#ffffff30}.feat .big span{color:#ffffffc0}.feat .desc{opacity:.95}
+.big b{font-weight:300;font-size:3.6rem;letter-spacing:-2px}
+.al{font-size:.95rem}.row{font-size:.95rem}.row b{font-size:1.1rem}
+.hi h1{font-weight:700;letter-spacing:-.3px;text-shadow:0 2px 12px #0004}
+.sp:hover,.ib:hover{transform:scale(1.06)}
+.lgs{display:flex;background:#ffffff26;border-radius:14px;padding:3px;backdrop-filter:blur(6px)}.lgs button{border:0;background:none;color:#fff;border-radius:11px;padding:8px 11px;font-weight:700;font-size:.85rem;cursor:pointer}.lgs button.on{background:#fff;color:var(--d)}
+.hr{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}.hr div{flex:none;width:64px;text-align:center;background:var(--bg);border-radius:14px;padding:8px 4px;display:flex;flex-direction:column;gap:2px;font-size:.8rem;color:var(--mu)}.hr b{font-size:1.1rem;color:var(--tx)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:520px){.logo small{display:none}.logo span{font-size:1rem}.ib{width:38px;height:38px}.lgs button{padding:7px 8px}.bar{gap:6px}}
+
+/* v3: mobile-first dark glass theme */
+html,body{overflow-x:hidden;width:100%}
+body{background:#04211a;color:#eaf5ea;padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}
+.hero{padding:calc(14px + env(safe-area-inset-top,0px)) 16px 110px;background:linear-gradient(180deg,#1f3b36 0%,#587c6a 36%,#a9c48a 68%,#5f8f2f 100%)}
+.bar{flex-wrap:wrap;gap:10px}.logo{min-width:0}
+.lgs{margin-left:auto;background:#06241d80}
+@media(max-width:480px){.lgs{order:3;width:100%}.lgs button{flex:1}.logo small{display:block}}
+.hi{margin-top:20px}.hi h1{font-size:1.9rem}
+main{margin-top:-70px;padding:0 14px}
+.card{background:linear-gradient(160deg,#ffffff22,#ffffff0e);border:1px solid #ffffff26;color:#eaf5ea;border-radius:26px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px #0006}
+.card:hover{transform:none;box-shadow:0 10px 30px #0006}
+.chip{background:#ffffff1f;color:#c9f27a}
+.ch small,.st div,.hr div,.fc div,.up,.row small{color:#ffffffa8}
+.st div,.hr div{background:#ffffff14}
+.st b,.hr b,.fc b{color:#fff}.row b{color:#c9f27a}
+.fc div{border-color:#ffffff26}.row{border-top-color:#ffffff1c}
+.al{background:#f2b63224;color:#fff3d1}.al.ok{background:#8bd45a22;color:#e6ffd0;border-left-color:#8bd45a}
+.sp,.feat .sp{background:#ffffff1a;border-color:#ffffff33;color:#fff}.sp.on{background:#c9f27a;color:#0b3d2e}
+h4{color:#c9f27a}
+.feat{background:linear-gradient(160deg,#2f6b3acc,#0b3d2ecc)}
+.big b{font-size:4.6rem}
+.sk{background:linear-gradient(90deg,#ffffff10,#ffffff30,#ffffff10);background-size:200%}
+#nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;gap:10px;padding:8px;border-radius:34px;background:#06241dd9;border:1px solid #ffffff26;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 8px 30px #0009}
+#nav .ib{width:52px;height:52px;border-radius:50%;background:#ffffff1a}
+#nav .pri,#nav .ib.on{background:var(--gold);color:#3b2a00}
+#toast{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+#dr{color:var(--tx);padding-top:calc(18px + env(safe-area-inset-top,0px))}
+
+.logo span{text-shadow:0 2px 8px #0006}.logo small{text-shadow:0 1px 6px #0005}
+.s{width:3px;background:linear-gradient(#d9a93a,#6e9a3c 50%,#2d6528)}
+.s:before{top:-14px;left:-2px;width:7px;height:20px;border-radius:50% 50% 50% 50%/75% 75% 25% 25%;background:linear-gradient(#f0cf63,#c8942c)}
+.hero{padding-bottom:124px}main{margin-top:-52px}
+
+/* v5: fix mobile overflow + centered title */
+html{-webkit-text-size-adjust:100%}
+main{grid-template-columns:minmax(0,1fr);width:100%}
+.card{min-width:0;max-width:100%}
+.hr{max-width:100%;-webkit-overflow-scrolling:touch}
+.fc div,.st div{min-width:0}
+.row span,.ch h2{min-width:0;overflow-wrap:anywhere}
+.bar{justify-content:center}
+.logo{flex:1 1 100%;justify-content:center;gap:10px}
+.logo>div{text-align:center}
+#nm{font-family:"Pacifico","Segoe Script","Brush Script MT",cursive;font-size:clamp(1.7rem,9vw,2.3rem);font-weight:400;line-height:1.25;letter-spacing:.5px;background:linear-gradient(180deg,#fff 30%,#ffe9a0);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 6px #0007)}
+.lgs{order:3;width:100%;max-width:420px;margin:0 auto}.lgs button{flex:1}
+.hi{text-align:center}
+
+/* v7: language dropdown */
+select.lgs{display:block;appearance:none;-webkit-appearance:none;height:44px;width:min(100%,260px);max-width:100%;margin:0 auto;padding:0 40px 0 18px;border:1px solid #ffffff3d;border-radius:14px;color:#fff;font:700 .95rem/1 inherit;font-family:inherit;text-align:center;text-align-last:center;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);background:#06241d99 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center/16px}
+select.lgs:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+select.lgs option{color:#14261c;background:#fff}
+#pc .st b{font-size:1.3rem}#pc .btn{margin-top:10px}#pc .btn.a{background:transparent;color:#eaf5ea;border-color:#ffffff40}
+.btn:disabled{opacity:.6}
+.btn svg{vertical-align:-5px;margin-right:6px}.btn.g{background:#ffffff14;color:#eaf5ea;border:1px solid #ffffff30}
+#gal{position:fixed;inset:0;z-index:55;background:#04211af5;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;flex-direction:column;color:#eaf5ea}#gal.o{display:flex}
+.gh{display:flex;align-items:center;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 10px}.gh h2{flex:1;margin:0;font-size:1.15rem}.gh .ib{background:#ffffff1f;font-size:1.3rem}
+#gb{flex:1;overflow:auto;padding:4px 14px calc(30px + env(safe-area-inset-bottom,0px));display:grid;align-content:start;gap:12px}
+.gg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.gg button{border:0;padding:0;background:#ffffff14;border-radius:14px;overflow:hidden;position:relative;aspect-ratio:1;cursor:pointer}.gg img{width:100%;height:100%;object-fit:cover;display:block}.gg i{position:absolute;top:7px;left:7px;width:11px;height:11px;border-radius:50%;border:2px solid #fff}.gg small{position:absolute;left:0;right:0;bottom:0;padding:16px 6px 4px;font-size:.7rem;background:linear-gradient(transparent,#000b);color:#fff;text-align:left}
+#md{position:fixed;inset:0;z-index:120;background:#000a;display:none;align-items:center;justify-content:center;padding:20px}
+.mb{background:#fff;color:#14261c;border-radius:22px;padding:22px;max-width:380px;width:100%;text-align:center}.mb h3{margin:6px 0}.mb p{margin:0 0 12px;color:#44564b}.mi{font-size:2.4rem}
+.mb .btn.a.dng{color:#c62828;border-color:#c62828;background:#fff}#md .btn.a{background:#fff}
+#nm{font-family:"Quicksand","Nunito","Segoe UI",system-ui,sans-serif;font-size:clamp(1.9rem,9vw,2.5rem);font-weight:600;line-height:1.2;letter-spacing:2px}
+</style></head><body>
+<div class="hero"><svg class="scene" viewBox="0 0 760 300" preserveAspectRatio="xMidYMax slice"><defs>
+<radialGradient id="sg"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
+<linearGradient id="mt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9bb8a6"/><stop offset="1" stop-color="#6f9580"/></linearGradient>
+<linearGradient id="ms" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f0d8" stop-opacity="0"/><stop offset="1" stop-color="#e6f0d8" stop-opacity=".75"/></linearGradient>
+<linearGradient id="h1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f8c35"/><stop offset="1" stop-color="#2d6528"/></linearGradient>
+<filter id="bl" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+<path id="tr" d="M0-38L9-18H5L12-2H3V6H-3V-2H-12L-5-18H-9z"/></defs>
+<circle class="sun" cx="640" cy="78" r="80" fill="url(#sg)" opacity=".55"/><circle cx="640" cy="78" r="22" fill="#fff6d0" opacity=".9"/>
+<g class="cl" filter="url(#bl)" fill="#fff" opacity=".3"><circle cx="40" cy="62" r="16"/><circle cx="64" cy="52" r="21"/><circle cx="92" cy="60" r="16"/><rect x="26" y="60" width="82" height="14" rx="7"/></g>
+<g class="cl" filter="url(#bl)" fill="#fff" opacity=".2" style="animation-delay:-70s;animation-duration:160s"><circle cx="40" cy="118" r="14"/><circle cx="68" cy="108" r="22"/><circle cx="100" cy="116" r="15"/><rect x="26" y="116" width="92" height="13" rx="6"/></g>
+<path d="M0 190L90 140L160 175L260 120L360 178L450 135L560 182L650 130L760 175V260H0z" fill="url(#mt)" opacity=".75"/>
+<rect y="150" width="760" height="80" fill="url(#ms)"/>
+<g id="trees" fill="#1b4d33" opacity=".9"></g>
+<path d="M0 222Q150 188 320 214T620 204T760 216V300H0z" fill="url(#h1)"/>
+<path d="M0 258Q200 224 400 254T760 242V300H0z" fill="#1f5120" opacity=".85"/></svg>
+<div class="bar"><div class="logo"><svg width="44" height="44" viewBox="0 0 48 48" style="flex:none;filter:drop-shadow(0 3px 6px #0005)"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3fae62"/><stop offset="1" stop-color="#0b3d2e"/></linearGradient><linearGradient id="ls" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe27a"/><stop offset="1" stop-color="#f2a516"/></linearGradient><clipPath id="lc"><rect width="48" height="48" rx="14"/></clipPath></defs>
+<rect width="48" height="48" rx="14" fill="url(#lg)"/><g clip-path="url(#lc)"><circle cx="24" cy="31" r="12" fill="url(#ls)"/><path d="M-2 37Q24 27 50 37V50H-2z" fill="#082b20"/><path d="M-2 42Q24 34 50 42V50H-2z" fill="#0d4a35"/></g>
+<path d="M24 37V22" stroke="#eaffd0" stroke-width="2.6" stroke-linecap="round"/><path d="M24 28C17 28 13.500 23 13.500 17.500 20 17.500 24 21 24 28z" fill="#a8ec68"/><path d="M24 23C24 16 28 11.500 35.500 11.500 35.500 18 31 23 24 23z" fill="#d6f78a"/></svg><div><span id="nm">Vithana</span></div></div>
+<select class="lgs" id="lgs" aria-label="Language"></select></div>
+<div class="hi"><h1 id="gr"></h1><p id="dt"></p></div><div id="field"></div></div>
+<main id="feed"></main>
+<div id="cam"><video id="vid" playsinline autoplay muted></video><div class="cb"><button class="ib" id="cX">✕</button><button class="sh" id="cSn" aria-label="Capture"></button><label class="ib"><input id="file" type="file" accept="image/*" hidden></label></div></div>
+<nav id="nav"><button class="ib" id="bH" aria-label="Home"></button><button class="ib pri" id="bC" aria-label="Scan crop"></button><button class="ib" id="bG" aria-label="Gallery"></button><button class="ib" id="bM" aria-label="Ask by voice"></button><button class="ib" id="bS" aria-label="Settings"></button></nav>
+<div id="gal"><div class="gh"><button class="ib" id="gx" aria-label="Back"></button><h2 id="gt"></h2></div><div id="gb"></div></div><div id="md"></div>
+<div id="ov"></div><aside id="dr"></aside><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const P={cam:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/>',set:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',spk:'<path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"/>',wx:'<path d="M7 18a4 4 0 010-8 5 5 0 019.5 1A3.5 3.5 0 0116 18z"/>',adv:'<path d="M12 3a6 6 0 00-3 11v3h6v-3a6 6 0 00-3-11zM10 20h4"/>',mk:'<path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/>',lf:'<path d="M5 19c0-9 5-14 14-14 0 9-5 14-14 14zM5 19l7-7"/>',ch:'<path d="M4 5h16v11H9l-5 4z"/>',rp:'<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',img:'<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M5 18l5-5 4 4 2-2 3 3"/>'};
+const I=n=>`<svg class="i" viewBox="0 0 24 24">${P[n]}</svg>`;
+P.home='<path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/>';P.lock='<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>';$("#bH").innerHTML=I("home");$("#bH").onclick=()=>{window.speechSynthesis&&speechSynthesis.cancel();document.querySelectorAll(".sp.on").forEach(b=>b.classList.remove("on"));window.scrollTo({top:0,behavior:"smooth"})};$("#bC").innerHTML=I("cam");$("#bM").innerHTML=I("mic");$("#bS").innerHTML=I("set");$("#file").parentNode.insertAdjacentHTML("afterbegin",I("img"));$("#cX").style.fontSize="1.2rem";
+const T={
+en:{tag:"Smart farming assistant",g:["Good morning","Good afternoon","Good evening"],wx:"Weather now",adv:"Today's advice",mk:"Market price",hum:"Humidity",wind:"Wind",rain:"Rain chance",upd:"Updated",now:"just now",ago:"min ago",sky:["Clear sky","Partly cloudy","Foggy","Rainy","Thunderstorm"],wxT:(t,s,p,w)=>`It is ${t}°C with ${s}. Chance of rain is ${p} percent. Wind is ${w} kilometres per hour.`,a_rain:"Rain is likely today. Do not spray medicine or fertilizer, it will wash away.",a_wind:"Wind is strong. Spraying today will drift away. Wait for a calmer day.",a_hot:"It is very hot. Water your crops early morning or evening.",a_ok:"Good day for field work. Spray medicine early in the morning if needed.",perq:"₹ per quintal",sample:"Sample prices. Add a data.gov.in key in settings for live mandi prices.",mkD:(c,r)=>`Latest price for ${c} is ${r} rupees per quintal.`,scanT:"Crop check",ask:"Your question",busy:"Checking your crop…",health:"Health",problem:"Problem",fix:"What to do",pest:"Medicine to use",org:"Natural option",safe:"Be careful",good:"Healthy",mid:"Some trouble",bad:"Serious",demo:"Demo result. Add a Gemini key in settings for real results.",nokey:"Add a Gemini key in settings first.",err:"Something went wrong. Check internet or key.",listen:"Listening…",nov:"No voice for this language on this device.",sv:"Save",saved:"Saved ✔",clr:"Erase saved data",lang:"Language",gk:"Gemini API key (free)",dk:"data.gov.in key (free)",model:"AI model",crop:"Main crop",oth:"Other…",pt:"Allow access",pd:"To scan crops, hear your questions and show local weather, please allow camera, microphone and location.",pa:"Allow",pl:"Later",pcam:"Camera",pmic:"Microphone",ploc:"Location",pbl:"Blocked. Tap the lock icon near the address bar and choose Allow.",locok:"Location set ✔",pall:"Allow camera, mic & location",psec:"Chrome only shows the Allow pop-up on a secure (https) link. Open this app from an https address or localhost; a saved file cannot ask. The Scan button will still open your phone camera.",nosp:"Did not hear anything. Tap the mic and try again.",mperm:"Please allow microphone permission.",lat:"Latitude",lon:"Longitude",size:"Text size",rate:"Voice speed",auto:"Read new answers aloud",anim:"Background animation",set:"Settings",rep:"Weather report",hrs:"Next 12 hours",wk:"This week",fl:"Feels like",uv:"UV index",sr:"Sunrise",ss:"Sunset",repD:(a,b,n)=>`Over the next 7 days, highs reach ${a}°C and lows drop to ${b}°C. Rain is likely on ${n} days.`},
+te:{tag:"స్మార్ట్ వ్యవసాయ సహాయకుడు",g:["శుభోదయం","శుభ మధ్యాహ్నం","శుభ సాయంత్రం"],wx:"ఇప్పటి వాతావరణం",adv:"ఈ రోజు సలహా",mk:"మార్కెట్ ధర",hum:"తేమ",wind:"గాలి",rain:"వర్షం అవకాశం",upd:"నవీకరణ",now:"ఇప్పుడే",ago:"నిమిషాల క్రితం",sky:["నిర్మలమైన ఆకాశం","కొంత మబ్బుగా ఉంది","పొగమంచు","వర్షంగా ఉంది","ఉరుములతో వర్షం"],wxT:(t,s,p,w)=>`ప్రస్తుతం ${t}°C, ${s}. వర్షం పడే అవకాశం ${p} శాతం. గాలి వేగం గంటకు ${w} కిలోమీటర్లు.`,a_rain:"ఈ రోజు వర్షం పడే అవకాశం ఉంది. మందు లేదా ఎరువు చల్లకండి, కొట్టుకుపోతుంది.",a_wind:"గాలి ఎక్కువగా ఉంది. ఈ రోజు మందు చల్లితే వృథా అవుతుంది. ప్రశాంతమైన రోజు కోసం ఆగండి.",a_hot:"చాలా ఎండగా ఉంది. ఉదయం లేదా సాయంత్రం పంటకు నీరు పెట్టండి.",a_ok:"పొలం పనులకు మంచి రోజు. అవసరమైతే ఉదయాన్నే మందు చల్లండి.",perq:"₹ క్వింటాలుకు",sample:"ఇవి నమూనా ధరలు. లైవ్ ధరల కోసం సెట్టింగ్స్‌లో data.gov.in కీ ఇవ్వండి.",mkD:(c,r)=>`${c} తాజా ధర క్వింటాలుకు ${r} రూపాయలు.`,scanT:"పంట పరిశీలన",ask:"మీ ప్రశ్న",busy:"మీ పంటను పరిశీలిస్తోంది…",health:"ఆరోగ్యం",problem:"సమస్య",fix:"ఏం చేయాలి",pest:"వాడాల్సిన మందు",org:"సహజ పద్ధతి",safe:"జాగ్రత్తలు",good:"ఆరోగ్యంగా ఉంది",mid:"కొంత సమస్య",bad:"తీవ్రమైన సమస్య",demo:"ఇది డెమో ఫలితం. నిజమైన ఫలితాల కోసం సెట్టింగ్స్‌లో Gemini కీ ఇవ్వండి.",nokey:"ముందు సెట్టింగ్స్‌లో Gemini కీ ఇవ్వండి.",err:"ఏదో తప్పు జరిగింది. ఇంటర్నెట్ లేదా కీ చూడండి.",listen:"వింటోంది…",nov:"ఈ భాషకు ఈ ఫోన్‌లో వాయిస్ లేదు.",sv:"సేవ్",saved:"సేవ్ అయింది ✔",clr:"సేవ్ చేసిన డేటా తొలగించు",lang:"భాష",gk:"Gemini API కీ (ఉచితం)",dk:"data.gov.in కీ (ఉచితం)",model:"AI మోడల్",crop:"ముఖ్య పంట",oth:"ఇతర…",pt:"అనుమతులు ఇవ్వండి",pd:"పంటను స్కాన్ చేయడానికి, మీ ప్రశ్నలు వినడానికి, స్థానిక వాతావరణం చూపడానికి కెమెరా, మైక్, లొకేషన్ అనుమతి ఇవ్వండి.",pa:"అనుమతించు",pl:"తర్వాత",pcam:"కెమెరా",pmic:"మైక్",ploc:"లొకేషన్",pbl:"బ్లాక్ అయింది. అడ్రస్ బార్ దగ్గర తాళం గుర్తు నొక్కి 'అనుమతించు' ఎంచుకోండి.",locok:"లొకేషన్ సెట్ అయింది ✔",pall:"కెమెరా, మైక్, లొకేషన్ అనుమతించు",psec:"Chrome అనుమతి పాప్-అప్ https లింక్‌లో మాత్రమే చూపిస్తుంది. ఈ యాప్‌ను https చిరునామా లేదా localhost నుండి తెరవండి; సేవ్ చేసిన ఫైల్ అడగలేదు. స్కాన్ బటన్ మాత్రం ఫోన్ కెమెరాను తెరుస్తుంది.",nosp:"ఏమీ వినిపించలేదు. మైక్ నొక్కి మళ్ళీ ప్రయత్నించండి.",mperm:"దయచేసి మైక్రోఫోన్ అనుమతి ఇవ్వండి.",lat:"అక్షాంశం",lon:"రేఖాంశం",size:"అక్షరాల పరిమాణం",rate:"వాయిస్ వేగం",auto:"కొత్త సమాధానాలు గట్టిగా చదువు",anim:"నేపథ్య యానిమేషన్",set:"సెట్టింగ్స్",rep:"వాతావరణ నివేదిక",hrs:"రాబోయే 12 గంటలు",wk:"ఈ వారం",fl:"అనుభూతి",uv:"UV సూచిక",sr:"సూర్యోదయం",ss:"సూర్యాస్తమయం",repD:(a,b,n)=>`రాబోయే 7 రోజుల్లో గరిష్ఠ ఉష్ణోగ్రత ${a}°C, కనిష్ఠ ${b}°C. ${n} రోజులు వర్షం పడే అవకాశం ఉంది.`},
+hi:{tag:"स्मार्ट खेती सहायक",g:["सुप्रभात","नमस्कार","शुभ संध्या"],wx:"अभी का मौसम",adv:"आज की सलाह",mk:"मंडी भाव",hum:"नमी",wind:"हवा",rain:"बारिश की संभावना",upd:"अपडेट",now:"अभी",ago:"मिनट पहले",sky:["साफ आसमान","आंशिक बादल","कोहरा","बारिश","गरज के साथ बारिश"],wxT:(t,s,p,w)=>`अभी ${t}°C है, ${s}। बारिश की संभावना ${p} प्रतिशत है। हवा की गति ${w} किलोमीटर प्रति घंटा है।`,a_rain:"आज बारिश हो सकती है। दवा या खाद न छिड़कें, बह जाएगी।",a_wind:"हवा तेज है। आज छिड़काव बेकार जाएगा। शांत दिन का इंतज़ार करें।",a_hot:"बहुत गर्मी है। सुबह या शाम को फसल की सिंचाई करें।",a_ok:"खेत के काम के लिए अच्छा दिन है। ज़रूरत हो तो सुबह जल्दी दवा छिड़कें।",perq:"₹ प्रति क्विंटल",sample:"ये नमूना भाव हैं। लाइव भाव के लिए सेटिंग्स में data.gov.in कुंजी डालें।",mkD:(c,r)=>`${c} का ताज़ा भाव ${r} रुपये प्रति क्विंटल है।`,scanT:"फसल जांच",ask:"आपका सवाल",busy:"आपकी फसल देख रहे हैं…",health:"सेहत",problem:"समस्या",fix:"क्या करें",pest:"कौन सी दवा डालें",org:"देसी उपाय",safe:"सावधानी",good:"स्वस्थ है",mid:"थोड़ी समस्या",bad:"गंभीर समस्या",demo:"यह डेमो नतीजा है। असली नतीजों के लिए सेटिंग्स में Gemini कुंजी डालें।",nokey:"पहले सेटिंग्स में Gemini कुंजी डालें।",err:"कुछ गड़बड़ हुई। इंटरनेट या कुंजी जांचें।",listen:"सुन रहा है…",nov:"इस भाषा की आवाज़ इस फोन में नहीं है।",sv:"सहेजें",saved:"सहेजा गया ✔",clr:"सहेजा डेटा मिटाएं",lang:"भाषा",gk:"Gemini API कुंजी (मुफ़्त)",dk:"data.gov.in कुंजी (मुफ़्त)",model:"AI मॉडल",crop:"मुख्य फसल",oth:"अन्य…",pt:"अनुमति दें",pd:"फसल स्कैन करने, आपके सवाल सुनने और स्थानीय मौसम दिखाने के लिए कैमरा, माइक और लोकेशन की अनुमति दें।",pa:"अनुमति दें",pl:"बाद में",pcam:"कैमरा",pmic:"माइक",ploc:"लोकेशन",pbl:"ब्लॉक है। एड्रेस बार के पास ताले का निशान दबाकर 'अनुमति दें' चुनें।",locok:"लोकेशन सेट हो गई ✔",pall:"कैमरा, माइक, लोकेशन की अनुमति दें",psec:"Chrome का अनुमति पॉप-अप सिर्फ़ https लिंक पर दिखता है। इस ऐप को https पते या localhost से खोलें; सहेजी हुई फ़ाइल नहीं पूछ सकती। स्कैन बटन फिर भी फ़ोन का कैमरा खोलेगा।",nosp:"कुछ सुनाई नहीं दिया। माइक दबाकर फिर कोशिश करें।",mperm:"कृपया माइक्रोफ़ोन की अनुमति दें।",lat:"अक्षांश",lon:"देशांतर",size:"अक्षर का आकार",rate:"आवाज़ की गति",auto:"नए जवाब बोलकर सुनाएं",anim:"पृष्ठभूमि एनिमेशन",set:"सेटिंग्स",rep:"मौसम रिपोर्ट",hrs:"अगले 12 घंटे",wk:"इस सप्ताह",fl:"महसूस",uv:"UV सूचकांक",sr:"सूर्योदय",ss:"सूर्यास्त",repD:(a,b,n)=>`अगले 7 दिनों में अधिकतम तापमान ${a}°C और न्यूनतम ${b}°C रहेगा। ${n} दिन बारिश की संभावना है।`}};
+
+T.en.sm=["Sample mandi A","Sample mandi B"];T.te.sm=["నమూనా మండి A","నమూనా మండి B"];T.hi.sm=["नमूना मंडी A","नमूना मंडी B"];
+T.en.dm={problem:"Demo: leaf folder insects eating the leaves",steps:["Remove badly damaged leaves","Check the field every two days","Spray only if many plants are damaged"],pesticide:"Ask your local agri shop for a registered medicine",organic:"Neem oil, 5 ml per litre of water",safety:"Wear mask and gloves. Spray in the evening."};
+T.te.dm={problem:"డెమో: ఆకు మడత పురుగులు ఆకులను తింటున్నాయి",steps:["బాగా దెబ్బతిన్న ఆకులను తీసివేయండి","రెండు రోజులకు ఒకసారి పొలాన్ని చూడండి","ఎక్కువ మొక్కలు దెబ్బతింటేనే మందు చల్లండి"],pesticide:"మీ దగ్గరి వ్యవసాయ దుకాణంలో అనుమతి ఉన్న మందు అడగండి",organic:"వేప నూనె, లీటరు నీటికి 5 మి.లీ.",safety:"మాస్క్, చేతి తొడుగులు వాడండి. సాయంత్రం చల్లండి."};
+T.hi.dm={problem:"डेमो: पत्ता लपेटक कीड़े पत्तियां खा रहे हैं",steps:["बुरी तरह खराब पत्तियां हटा दें","हर दो दिन में खेत देखें","ज़्यादा पौधे खराब हों तभी दवा छिड़कें"],pesticide:"अपनी नज़दीकी कृषि दुकान से मान्यता प्राप्त दवा पूछें",organic:"नीम का तेल, प्रति लीटर पानी में 5 मि.ली.",safety:"मास्क और दस्ताने पहनें। शाम को छिड़काव करें।"};
+const LN={en:"English",te:"తెలుగు",hi:"हिन्दी"},FL={en:"English",te:"Telugu",hi:"Hindi"},VL={en:"en-IN",te:"te-IN",hi:"hi-IN"};
+const D={lang:"en",gk:"",dk:"",model:"gemini-2.5-flash",crop:"Rice",lat:"17.69",lon:"83.22",auto:true,rate:.9,size:17,anim:true};
+
+const CR=[
+{k:"Rice",te:"వరి",hi:"धान"},{k:"Wheat",te:"గోధుమ",hi:"गेहूं"},{k:"Maize",te:"మొక్కజొన్న",hi:"मक्का"},
+{k:"Cotton",te:"పత్తి",hi:"कपास"},{k:"Groundnut",te:"వేరుశనగ",hi:"मूंगफली"},{k:"Sugarcane",te:"చెరకు",hi:"गन्ना"},
+{k:"Tomato",te:"టమాటా",hi:"टमाटर"},{k:"Onion",te:"ఉల్లిపాయ",hi:"प्याज"},{k:"Potato",te:"బంగాళదుంప",hi:"आलू"},
+{k:"Chilli",te:"మిరప",hi:"मिर्च",api:"Dry Chillies"},{k:"Turmeric",te:"పసుపు",hi:"हल्दी"},
+{k:"Bengal Gram",te:"శనగ",hi:"चना",api:"Bengal Gram(Gram)(Whole)"},{k:"Red Gram",te:"కందులు",hi:"अरहर (तुअर)",api:"Arhar (Tur/Red Gram)(Whole)"},
+{k:"Black Gram",te:"మినుములు",hi:"उड़द",api:"Black Gram (Urad Beans)(Whole)"},{k:"Green Gram",te:"పెసలు",hi:"मूंग",api:"Green Gram (Moong)(Whole)"},
+{k:"Soyabean",te:"సోయాబీన్",hi:"सोयाबीन"},{k:"Mustard",te:"ఆవాలు",hi:"सरसों"},{k:"Banana",te:"అరటి",hi:"केला"},
+{k:"Mango",te:"మామిడి",hi:"आम"},{k:"Jowar",te:"జొన్న",hi:"ज्वार",api:"Jowar(Sorghum)"},{k:"Bajra",te:"సజ్జ",hi:"बाजरा",api:"Bajra(Pearl Millet/Cumbu)"},
+{k:"Brinjal",te:"వంకాయ",hi:"बैंगन"},{k:"Okra",te:"బెండకాయ",hi:"भिंडी",api:"Bhindi(Ladies Finger)"},
+{k:"Coconut",te:"కొబ్బరి",hi:"नारियल"},{k:"Sunflower",te:"పొద్దుతిరుగుడు",hi:"सूरजमुखी"},{k:"Sesame",te:"నువ్వులు",hi:"तिल",api:"Sesamum(Sesame,Gingelly,Til)"}];
+const cl=c=>S.lang=="en"?c.k:c[S.lang];
+const cn=()=>{const c=CR.find(x=>x.k==S.crop);return c?cl(c):S.crop};
+const capi=()=>{const c=CR.find(x=>x.k==S.crop);return c?(c.api||c.k):S.crop};
+const resolveCrop=v=>{v=(v||"").trim();const q=v.toLowerCase();const c=CR.find(x=>x.k.toLowerCase()==q||x.te==v||x.hi==v);return c?c.k:v};
+let S=D;try{S={...D,...JSON.parse(localStorage.getItem("km2")||"{}")}}catch(e){}
+const sv=()=>{try{localStorage.setItem("km2",JSON.stringify(S))}catch(e){}};
+const t=k=>T[S.lang][k];
+let W=null,M=null,user=[],said=[],stamp=0,cur=null;
+const toast=m=>{const e=$("#toast");e.textContent=m;e.style.display="block";setTimeout(()=>e.style.display="none",3500)};
+
+function card(ic,title,sub,desc,body,say){said.push(say);return`<div class="card ${ic=="wx"?"feat":""}"><div class="ch"><div class="chip">${I(ic)}</div><h2>${title}${sub?`<small>${sub}</small>`:""}</h2><button class="sp" data-i="${said.length-1}" aria-label="Listen">${I("spk")}</button></div>${desc?`<p class="desc">${desc}</p>`:""}${body||""}</div>`}
+document.addEventListener("click",e=>{const b=e.target.closest(".sp");if(b&&!isNaN(b.dataset.i))speak(said[b.dataset.i],b)});
+const wd=d=>new Date(d).toLocaleDateString(VL[S.lang],{weekday:'short'}),tm=(d,o)=>new Date(d).toLocaleTimeString(VL[S.lang],o||{hour:'2-digit',minute:'2-digit'});
+
+let pst={};
+async function chk(){for(const n of["camera","microphone","geolocation"])try{pst[n]=(await navigator.permissions.query({name:n})).state}catch(e){}
+ if(!S.pd&&["camera","microphone","geolocation"].every(n=>pst[n]=="granted")){S.pd=true;sv()}render()}
+const grab=async c=>{const m=await navigator.mediaDevices.getUserMedia(c);m.getTracks().forEach(x=>x.stop())};
+async function pCam(){try{await grab({video:true});pst.camera="granted"}catch(e){if(e.name=="NotAllowedError")pst.camera="denied"}}
+async function pMic(){try{await grab({audio:true});pst.microphone="granted"}catch(e){if(e.name=="NotAllowedError")pst.microphone="denied"}}
+const pLoc=()=>new Promise(r=>{if(!navigator.geolocation)return r();navigator.geolocation.getCurrentPosition(p=>{S.lat=p.coords.latitude.toFixed(2);S.lon=p.coords.longitude.toFixed(2);pst.geolocation="granted";sv();toast(t("locok"));live();r()},e=>{if(e.code==1)pst.geolocation="denied";r()},{timeout:12000,maximumAge:600000})});
+async function askAll(){if(!window.isSecureContext)return toast(t("psec"));document.querySelectorAll("#pa,#pm").forEach(b=>b.disabled=true);
+ await pCam();await pMic();await pLoc();S.pd=true;sv();render();document.querySelectorAll("#pm").forEach(b=>b.disabled=false);
+ if(Object.values(pst).includes("denied"))toast(t("pbl"))}
+function permCard(){const sec=window.isSecureContext,ic=n=>pst[n]=="granted"?"✔":pst[n]=="denied"?"⛔":"•";
+ return`<div class="card" id="pc"><div class="ch"><div class="chip">${I("lock")}</div><h2>${t("pt")}</h2></div><p class="desc">${sec?t("pd"):t("psec")}</p><div class="st"><div><b>${ic("camera")}</b>${t("pcam")}</div><div><b>${ic("microphone")}</b>${t("pmic")}</div><div><b>${ic("geolocation")}</b>${t("ploc")}</div></div>${sec?`<button class="btn" id="pa">${t("pa")}</button>`:""}<button class="btn a" id="pl">${t("pl")}</button></div>`}
+document.addEventListener("click",e=>{if(e.target.closest("#pa"))askAll();else if(e.target.closest("#pl")){S.pd=true;sv();render()}});
+function render(){said=[];let h=(S.pd?"":permCard())+(busy?`<div class="card"><img class="th" src="${busy}"><div class="sk"></div><p class="up">${t("busy")}</p></div>`:"")+(scans[0]?scanView(scans[0],"u0")+(scans.length>1?`<button class="btn g" id="gbtn">${I("img")} ${t("prev")} (${scans.length-1})</button>`:""):"")+user.join("");
+ if(W){const s=t("sky")[W.sk],d=t("wxT")(Math.round(W.t),s,W.p,Math.round(W.w));
+  const A=[];if(W.p>60)A.push(t("a_rain"));if(W.w>20)A.push(t("a_wind"));if(W.t>38)A.push(t("a_hot"));const ok=!A.length;if(ok)A.push(t("a_ok"));
+  h+=card("wx",t("wx"),s,"",`<div class="big"><b>${Math.round(W.t)}°</b><span>${s}</span></div><div class="st"><div><b>${W.h}%</b>${t("hum")}</div><div><b>${Math.round(W.w)} km/h</b>${t("wind")}</div><div><b>${W.p}%</b>${t("rain")}</div></div><div class="fc">${W.days.slice(1,4).map(x=>`<div>${wd(x.d)}<br><b>${x.max}° / ${x.min}°</b><br>💧${x.p}%</div>`).join("")}</div>`,d);
+  h+=card("adv",t("adv"),"","",A.map(a=>`<div class="al ${ok?"ok":""}">${a}</div>`).join(""),A.join(" "));
+  const mx=Math.max(...W.days.map(x=>x.max)),mn=Math.min(...W.days.map(x=>x.min)),nr=W.days.filter(x=>x.p>50).length,rd=t("repD")(mx,mn,nr);
+  h+=card("rp",t("rep"),"",rd,`<h4>${t("hrs")}</h4><div class="hr">${W.hr.map(x=>`<div>${tm(x.time,{hour:"numeric"})}<b>${x.c}°</b>💧${x.p}%</div>`).join("")}</div><div class="st g2"><div><b>${Math.round(W.fl)}°C</b>${t("fl")}</div><div><b>${W.uv}</b>${t("uv")}</div><div><b>${tm(W.sr)}</b>${t("sr")}</div><div><b>${tm(W.ss)}</b>${t("ss")}</div></div><h4>${t("wk")}</h4>${W.days.map(x=>`<div class="row"><span>${wd(x.d)}</span><span>💧${x.p}%</span><b>${x.max}° / ${x.min}°</b></div>`).join("")}`,rd);
+ }else h+=`<div class="card"><div class="sk"></div></div>`;
+ if(M){const rw=M.sample?[[t("sm")[0],2150],[t("sm")[1],2230]]:M.rows,q=rw.slice(0,4);h+=card("mk",t("mk"),cn(),M.sample?(M.err||t("sample")):"",q.map(r=>`<div class="row"><span>${r[0]}</span><b>₹${r[1]}</b></div>`).join("")+`<div class="row"><span></span><small>${t("perq")}</small></div>`,t("mkD")(cn(),q[0][1]))}
+ h+=`<div class="up" id="up"></div>`;$("#feed").innerHTML=h;tick()}
+function tick(){const e=$("#up");if(!e||!stamp)return;const m=Math.floor((Date.now()-stamp)/60000);e.textContent=t("upd")+": "+(m<1?t("now"):m+" "+t("ago"))+" ●";
+ const n=new Date(),H=n.getHours();$("#gr").textContent=t("g")[H<12?0:H<17?1:2];$("#dt").textContent=n.toLocaleDateString(VL[S.lang],{weekday:"long",day:"numeric",month:"long"})+" · "+n.toLocaleTimeString(VL[S.lang],{hour:"2-digit",minute:"2-digit"})}
+async function live(){try{const j=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${S.lat}&longitude=${S.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code&hourly=temperature_2m,precipitation_probability&daily=precipitation_probability_max,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&forecast_days=7&timezone=auto`)).json();
+ const c=j.current,w=c.weather_code,sk=w<2?0:w<4?1:w<50?2:w<90?3:4,D=j.daily,H=j.hourly;let i0=H.time.findIndex(x=>x>=c.time.slice(0,13));if(i0<0)i0=0;
+ W={t:c.temperature_2m,h:c.relative_humidity_2m,w:c.wind_speed_10m,fl:c.apparent_temperature,sk,p:D.precipitation_probability_max[0],uv:D.uv_index_max[0],sr:D.sunrise[0],ss:D.sunset[0],days:D.time.map((d,i)=>({d,max:Math.round(D.temperature_2m_max[i]),min:Math.round(D.temperature_2m_min[i]),p:D.precipitation_probability_max[i]})),hr:Array.from({length:12},(_,k)=>({time:H.time[i0+k],c:Math.round(H.temperature_2m[i0+k]),p:H.precipitation_probability[i0+k]}))};stamp=Date.now()}catch(e){}
+ let rows=[],sample=true;
+ let err="";if(!S.dk)err="No data.gov.in key saved";else try{const r=await fetch(`https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${encodeURIComponent(S.dk)}&format=json&limit=5&filters[commodity]=${encodeURIComponent(capi())}`);const j=await r.json();if(j.records?.length){rows=j.records.map(r=>[r.market+", "+r.state,r.modal_price]);sample=false}else err="Price API: "+(j.message||j.error||("HTTP "+r.status))+" (records: "+(j.records?j.records.length:"none")+", crop: "+capi()+")"}catch(e){err="Price API failed: "+e.message}
+ M={rows,sample,err};render()}
+// field
+const f=$("#field");for(let i=0;i<60;i++){const d=document.createElement("div");d.className="s";d.style.cssText=`left:${i*1.7+Math.random()}%;height:${26+Math.random()*34}px;animation-delay:${-Math.random()*3}s;animation-duration:${2.4+Math.random()*2}s`;f.appendChild(d)}
+// Gemini
+async function gem(parts,json,sig){const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${S.model}:generateContent?key=${S.gk}`,{method:"POST",signal:sig,headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts}],generationConfig:json?{responseMimeType:"application/json"}:{}})});
+ const j=await r.json();if(!r.ok)throw new Error(j.error?.message||r.status);return j.candidates[0].content.parts.map(p=>p.text).join("")}
+function push(h){user.unshift(h);render();window.scrollTo({top:0,behavior:"smooth"})}
+// camera
+$("#bC").onclick=async()=>{if(!window.isSecureContext||!navigator.mediaDevices){const f=$("#file");f.setAttribute("capture","environment");f.click();f.removeAttribute("capture");return}try{const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});cur=s;$("#vid").srcObject=s;$("#vid").play().catch(()=>{});$("#cam").style.display="flex"}catch(e){if(e.name=="NotAllowedError"){pst.camera="denied";toast(t("pcam")+": "+t("pbl"))}else toast("Camera: "+e.message)}};
+const closeCam=()=>{cur&&cur.getTracks().forEach(x=>x.stop());$("#cam").style.display="none"};$("#cX").onclick=closeCam;
+// mic
+let rec=null,recT=0;
+const micOff=()=>{clearTimeout(recT);rec=null;$("#bM").classList.remove("on")};
+$("#bM").onclick=()=>{const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R)return toast("Voice input not supported in this browser");if(!window.isSecureContext)return toast(t("psec"));
+ if(rec){const r=rec;micOff();try{r.stop()}catch(e){try{r.abort()}catch(_){}}return}
+ window.speechSynthesis&&speechSynthesis.cancel();document.querySelectorAll(".sp.on").forEach(x=>x.classList.remove("on"));
+ const r=new R(),b=$("#bM");rec=r;r.lang=VL[S.lang];r.interimResults=false;r.maxAlternatives=1;let got=false;b.classList.add("on");toast(t("listen"));
+ recT=setTimeout(()=>{if(rec===r){micOff();try{r.stop()}catch(e){}}},15000);
+ r.onerror=e=>{if(rec===r)micOff();if(e.error=="not-allowed"||e.error=="service-not-allowed")toast(t("pmic")+": "+t("pbl"));else if(e.error=="no-speech")toast(t("nosp"))};
+ r.onend=()=>{if(rec===r)micOff();if(!got)return};
+ r.onresult=async e=>{got=true;const q=e.results[0][0].transcript;if(!S.gk)return toast(t("nokey"));
+  try{const a=await gem([{text:`You are a friendly farming assistant for a small farmer in India growing ${S.crop}. Answer in ${FL[S.lang]}, very simple words, max 5 short sentences. Question: ${q}`}]);
+   said=[];user.unshift(`<div class="card"><div class="ch"><div class="chip">${I("ch")}</div><h2>${t("ask")}<small>${q}</small></h2><button class="sp" data-i="u1">${I("spk")}</button></div><p class="desc">${a.replace(/\n/g,"<br>")}</p></div>`);window.__a=a;render();if(S.auto)speak(a);window.scrollTo({top:0,behavior:"smooth"})}catch(x){toast(t("err"))}};
+ try{r.start()}catch(e){micOff()}};
+document.addEventListener("click",e=>{const b=e.target.closest('.sp[data-i="u1"]');if(b)speak(window.__a||"",b)},true);
+$('#lgs').onchange=e=>{S.lang=e.target.value;sv();apply();window.speechSynthesis&&speechSynthesis.cancel()};
+// settings
+const open=o=>{$("#dr").classList.toggle("o",o);$("#ov").style.display=o?"block":"none"};$("#ov").onclick=()=>open(false);
+$("#bS").onclick=()=>{$("#dr").innerHTML=`<h2>${t("set")}</h2><label>${t("lang")}</label><select id="a1">${Object.keys(LN).map(k=>`<option value="${k}" ${k==S.lang?"selected":""}>${LN[k]}</option>`).join("")}</select>
+<label>${t("gk")}</label><input type="password" id="a2" value="${S.gk}" placeholder="AIza…"><label>${t("model")}</label><input type="text" id="a3" value="${S.model}">
+<label>${t("dk")}</label><input type="password" id="a4" value="${S.dk}"><label>${t("crop")}</label><select id="a5">${CR.map(c=>`<option value="${c.k}" ${c.k==S.crop?"selected":""}>${cl(c)}</option>`).join("")}<option value="__o" ${CR.some(c=>c.k==S.crop)?"":"selected"}>${t("oth")}</option></select><input type="text" id="a5b" value="${CR.some(c=>c.k==S.crop)?"":S.crop}" style="display:${CR.some(c=>c.k==S.crop)?"none":"block"}">
+<label>${t("lat")} / ${t("lon")}</label><div style="display:flex;gap:8px"><input type="text" id="a6" value="${S.lat}"><input type="text" id="a7" value="${S.lon}"></div>
+<label>${t("size")}</label><input type="range" id="a8" min="15" max="24" value="${S.size}"><label>${t("rate")}</label><input type="range" id="a9" min=".5" max="1.4" step=".1" value="${S.rate}"><br><br>
+<label><input type="checkbox" id="b1" ${S.auto?"checked":""}> ${t("auto")}</label><br><label><input type="checkbox" id="b2" ${S.anim?"checked":""}> ${t("anim")}</label>
+<button class="btn a" id="pm" type="button">${t("pall")}</button><button class="btn" id="ok">${t("sv")}</button><button class="btn a" id="rs" style="color:#c62828;border-color:#c62828">${t("clr")}</button>`;open(true);
+ $("#pm").onclick=async()=>{await askAll();const a=$("#a6"),b=$("#a7");if(a)a.value=S.lat;if(b)b.value=S.lon};
+ $("#a5").onchange=()=>{$("#a5b").style.display=$("#a5").value=="__o"?"block":"none"};
+ $("#ok").onclick=()=>{S={...S,lang:$("#a1").value,gk:$("#a2").value.trim(),model:$("#a3").value.trim(),dk:$("#a4").value.trim(),crop:$("#a5").value=="__o"?(resolveCrop($("#a5b").value)||S.crop):$("#a5").value,lat:$("#a6").value,lon:$("#a7").value,size:+$("#a8").value,rate:+$("#a9").value,auto:$("#b1").checked,anim:$("#b2").checked};sv();apply();open(false);toast(t("saved"));live()};
+ $("#rs").onclick=()=>ask(t("cwT"),t("cwB"),t("cwY"),t("cwN"),()=>{stopSp();try{localStorage.removeItem("km2");localStorage.removeItem("km2s")}catch(e){}scans=[];user=[];S={...D};apply();open(false);live();toast(t("cleared"))})};
+function apply(){$('#lgs').innerHTML=Object.keys(LN).map(k=>`<option value="${k}" ${k==S.lang?"selected":""}>${LN[k]}</option>`).join('');document.documentElement.style.fontSize=S.size+"px";document.documentElement.lang=S.lang;document.body.classList.toggle("noanim",!S.anim);render();if(gal.classList.contains("o"))galRender()}
+(()=>{const g=document.getElementById("trees"),ns="http://www.w3.org/2000/svg",seg=[[0,222,150,188,320,214],[320,214,490,240,620,204],[620,204,750,168,760,216]];
+const hy=x=>{for(const q of seg)if(x<=q[4]){let a=0,b=1;for(let k=0;k<24;k++){const m=(a+b)/2,u=1-m;(u*u*q[0]+2*u*m*q[2]+m*m*q[4])<x?a=m:b=m}const m=(a+b)/2,u=1-m;return u*u*q[1]+2*u*m*q[3]+m*m*q[5]}return 216};
+for(let i=0;i<30;i++){const x=Math.min(758,i*26+Math.random()*18),k=.8+Math.random()*.6,u=document.createElementNS(ns,"use");u.setAttribute("href","#tr");u.setAttribute("transform",`translate(${x.toFixed(1)} ${(hy(x)+4*k).toFixed(1)}) scale(${k.toFixed(2)})`);u.setAttribute("opacity",(.72+Math.random()*.28).toFixed(2));g.appendChild(u)}})();
+Object.assign(T.en,{gal:"Scan gallery",prev:"Earlier scans",noscans:"No scans yet. Tap the camera to check a crop.",del:"Delete this scan",delT:"Delete this scan?",delB:"This photo and its advice will be removed.",cwT:"Erase all your data?",cwB:"This will delete your saved keys, settings and ALL scan photos. This cannot be undone.",cwY:"Yes, erase everything",cwN:"No, keep my data",cleared:"All data erased"});
+Object.assign(T.te,{gal:"స్కాన్ గ్యాలరీ",prev:"గత స్కాన్లు",noscans:"ఇంకా స్కాన్లు లేవు. పంటను పరిశీలించడానికి కెమెరా నొక్కండి.",del:"ఈ స్కాన్ తొలగించు",delT:"ఈ స్కాన్ తొలగించాలా?",delB:"ఈ ఫోటో మరియు దాని సలహా తొలగించబడతాయి.",cwT:"మొత్తం డేటా తొలగించాలా?",cwB:"మీ సేవ్ చేసిన కీలు, సెట్టింగ్స్, అన్ని స్కాన్ ఫోటోలు తొలగించబడతాయి. దీన్ని తిరిగి పొందలేరు.",cwY:"అవును, అన్నీ తొలగించు",cwN:"వద్దు, డేటా ఉంచు",cleared:"మొత్తం డేటా తొలగించబడింది"});
+Object.assign(T.hi,{gal:"स्कैन गैलरी",prev:"पिछले स्कैन",noscans:"अभी कोई स्कैन नहीं। फसल जांचने के लिए कैमरा दबाएं।",del:"यह स्कैन हटाएं",delT:"यह स्कैन हटाएं?",delB:"यह फ़ोटो और उसकी सलाह हट जाएगी।",cwT:"सारा डेटा मिटाएं?",cwB:"आपकी सहेजी कुंजियां, सेटिंग्स और सभी स्कैन फ़ोटो मिट जाएंगी। इसे वापस नहीं लाया जा सकेगा।",cwY:"हां, सब मिटाएं",cwN:"नहीं, डेटा रखें",cleared:"सारा डेटा मिटा दिया गया"});
+
+/* ---- speech: chunked so long Telugu/Hindi text is read fully ---- */
+let vo=[],spTok=0;
+const loadV=()=>{try{vo=speechSynthesis.getVoices()}catch(e){}};
+if(window.speechSynthesis){loadV();speechSynthesis.onvoiceschanged=loadV}
+function chunks(s){const out=[];(String(s).replace(/\s+/g," ").match(/[^.!?।॥]+[.!?।॥]*/g)||[String(s)]).forEach(x=>{x=x.trim();while(x.length>160){let i=x.lastIndexOf(" ",160);if(i<40)i=160;out.push(x.slice(0,i));x=x.slice(i).trim()}if(x)out.push(x)});return out}
+function stopSp(){spTok++;try{speechSynthesis.cancel()}catch(e){}document.querySelectorAll(".sp.on").forEach(b=>b.classList.remove("on"))}
+function speak(txt,btn,lg){if(!window.speechSynthesis||!txt)return;lg=lg||S.lang;if(btn&&btn.classList.contains("on")){stopSp();return}stopSp();
+ const tok=spTok,q=chunks(txt),lang=VL[lg];if(!vo.length)loadV();
+ const v=vo.find(x=>x.lang.replace("_","-").toLowerCase()==lang.toLowerCase())||vo.find(x=>x.lang.toLowerCase().startsWith(lg));
+ if(!v&&lg!="en"&&vo.length)toast(T[lg].nov);
+ if(btn)btn.classList.add("on");
+ const done=()=>{if(tok==spTok)document.querySelectorAll(".sp.on").forEach(b=>b.classList.remove("on"))};
+ q.forEach((c,i)=>{const u=new SpeechSynthesisUtterance(c);u.lang=lang;u.rate=+S.rate;if(v)u.voice=v;u.onend=()=>{if(i==q.length-1)done()};u.onerror=e=>{if(e.error!="canceled"&&e.error!="interrupted")done()};speechSynthesis.speak(u)})}
+
+/* ---- scans: only latest in feed, rest in gallery ---- */
+let busy=null,gv=null,scans=[];const SAY={},SAYL={};
+try{scans=JSON.parse(localStorage.getItem("km2s")||"[]")}catch(e){scans=[]}
+const saveScans=()=>{scans=scans.slice(0,24);for(;;){try{localStorage.setItem("km2s",JSON.stringify(scans));return}catch(e){if(scans.length<=1)return;scans.pop()}}};
+const norm=d=>{const z=x=>x==null?"":String(x);let st=d.steps;if(!Array.isArray(st))st=z(st).split(/\n|\d\.\s/);return{healthy:d.healthy===true||d.healthy=="true",severity:z(d.severity),problem:z(d.problem),steps:st.map(z).map(x=>x.trim()).filter(Boolean),pesticide:z(d.pesticide),organic:z(d.organic),safety:z(d.safety)}};
+function shrink(url,max,q){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.max(1,Math.round(i.width*k));c.height=Math.max(1,Math.round(i.height*k));c.getContext("2d").drawImage(i,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",q))};i.onerror=rej;i.src=url})}
+function scanView(r,key){const L=r.demo?S.lang:r.lang,tt=k=>T[L][k],d=r.demo?{healthy:false,severity:"Medium",...T[L].dm}:r.d;
+ const c=d.healthy?"#1b7a4b":d.severity=="High"?"#d32f2f":"#f29900",l=d.healthy?tt("good"):d.severity=="High"?tt("bad"):tt("mid");
+ const say=[l,d.problem,tt("fix"),...d.steps,tt("pest"),d.pesticide,tt("org"),d.organic,tt("safe"),d.safety,r.demo?tt("demo"):""].filter(Boolean).map(x=>x.replace(/[.।]+\s*$/,"")).join(". ")+".";
+ SAY[key]=say;SAYL[key]=L;
+ const when=new Date(r.ts).toLocaleString(VL[S.lang],{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+ return card("lf",tt("scanT"),when,d.problem,`<img class="th" src="${r.img}"><span class="pill" style="background:${c}">${l}</span>${r.demo?`<p><small>${tt("demo")}</small></p>`:""}<h4>${tt("fix")}</h4><ol>${d.steps.map(s=>`<li>${s}</li>`).join("")}</ol><h4>${tt("pest")}</h4><p>${d.pesticide}</p><h4>${tt("org")}</h4><p>${d.organic}</p><h4>${tt("safe")}</h4><p>${d.safety}</p>`,say).replace(/data-i="\d+"/,`data-k="${key}"`)}
+async function analyze(url){busy=url;render();window.scrollTo({top:0,behavior:"smooth"});
+ const r={id:Date.now(),ts:Date.now(),demo:!S.gk,lang:S.lang,img:url};
+ try{
+  if(S.gk){const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),45000);
+   try{const tx=await gem([{inline_data:{mime_type:"image/jpeg",data:url.split(",")[1]}},{text:`You are an agriculture expert helping a small farmer in India. Expected crop: ${S.crop}. Look at the photo. Reply ONLY JSON with keys: healthy(boolean), severity("Low"|"Medium"|"High"), problem(short), steps(array of 3 short actions), pesticide(suitable medicine and dose; advise consulting local agri officer), organic(natural option), safety(one line). Write all values in ${FL[S.lang]} using very simple words.`}],true,ctl.signal);
+    const m=tx.match(/\{[\s\S]*\}/);r.d=norm(JSON.parse(m?m[0]:tx))}finally{clearTimeout(to)}}
+  try{r.img=await shrink(url,720,.7)}catch(e){}
+ }catch(e){busy=null;render();push(`<div class="card">${t("err")}<br><small>${e.name=="AbortError"?"Timeout":e.message}</small></div>`);return}
+ busy=null;scans.unshift(r);saveScans();render();window.scrollTo({top:0,behavior:"smooth"});
+ if(S.auto)speak(SAY.u0,document.querySelector('.sp[data-k="u0"]'),SAYL.u0)}
+$("#cSn").onclick=()=>{const v=$("#vid");if(!v.videoWidth)return toast(t("err"));const c=document.createElement("canvas"),k=Math.min(1,1024/v.videoWidth);c.width=Math.round(v.videoWidth*k);c.height=Math.round(v.videoHeight*k);c.getContext("2d").drawImage(v,0,0,c.width,c.height);const u=c.toDataURL("image/jpeg",.8);closeCam();analyze(u)};
+$("#file").onchange=e=>{const fl=e.target.files[0];e.target.value="";if(!fl)return;closeCam();const u=URL.createObjectURL(fl);busy=u;render();window.scrollTo({top:0,behavior:"smooth"});shrink(u,1024,.8).then(analyze).catch(()=>{busy=null;render();toast(t("err"))})};
+document.addEventListener("click",e=>{const b=e.target.closest(".sp[data-k]");if(b){e.stopPropagation();speak(SAY[b.dataset.k],b,SAYL[b.dataset.k])}else if(e.target.closest("#gbtn"))openGal()},true);
+
+/* ---- in-app gallery ---- */
+const gal=$("#gal");
+function galRender(){const b=$("#gb"),x=$("#gx");$("#gt").textContent=t("gal");
+ if(gv!=null){const r=scans.find(s=>s.id==gv);if(!r){gv=null;return galRender()}x.textContent="‹";b.innerHTML=scanView(r,"u2")+`<button class="btn g" id="gd" style="color:#ffb4a8">${t("del")}</button>`;b.scrollTop=0;return}
+ x.textContent="✕";
+ b.innerHTML=scans.length?`<div class="gg">${scans.map(r=>{const d=r.demo?{healthy:false,severity:"Medium"}:r.d,c=d.healthy?"#1b7a4b":d.severity=="High"?"#d32f2f":"#f29900";return`<button data-id="${r.id}"><img src="${r.img}" alt=""><i style="background:${c}"></i><small>${new Date(r.ts).toLocaleDateString(VL[S.lang],{day:"numeric",month:"short"})}</small></button>`}).join("")}</div>`:`<p class="up" style="margin-top:40px">${t("noscans")}</p>`}
+function openGal(i){gv=i==null?null:i;galRender();gal.classList.add("o")}
+$("#gx").onclick=()=>{if(gv!=null){gv=null;stopSp();galRender()}else{stopSp();gal.classList.remove("o")}};
+$("#gb").addEventListener("click",e=>{const t1=e.target.closest(".gg button");if(t1){gv=+t1.dataset.id;galRender();return}
+ if(e.target.closest("#gd")){const id=gv;ask(t("delT"),t("delB"),t("del"),t("cwN"),()=>{scans=scans.filter(s=>s.id!=id);saveScans();gv=null;stopSp();galRender();render()})}});
+$("#bG").innerHTML=I("img");$("#bG").onclick=()=>openGal();
+
+/* ---- warning dialog ---- */
+function ask(title,body,yes,no,fn){const m=$("#md"),h=()=>{m.style.display="none"};
+ m.innerHTML=`<div class="mb" role="alertdialog" aria-modal="true"><div class="mi">⚠️</div><h3>${title}</h3><p>${body}</p><button class="btn" id="mn">${no}</button><button class="btn a dng" id="my">${yes}</button></div>`;
+ m.style.display="flex";$("#mn").focus();$("#mn").onclick=h;$("#my").onclick=()=>{h();fn()};m.onclick=e=>{if(e.target==m)h()}}
+apply();chk();live();setInterval(live,600000);setInterval(tick,30000);
+</script></body></html>
